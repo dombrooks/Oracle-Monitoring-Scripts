@@ -45,15 +45,15 @@ SELECT ss.inst
            / NULLIF(MAX(CASE WHEN bm.stat_name = 'DB time' THEN em.value - bm.value END),0),2),'999999990.99')                                           db_cpu_perc
 ,      TO_CHAR(ROUND(100*MAX(CASE WHEN bm.stat_name = 'sql execute elapsed time' THEN em.value - bm.value END)
            / NULLIF(MAX(CASE WHEN bm.stat_name = 'DB time' THEN em.value - bm.value END),0),2),'999999990.99')                                           sql_time_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN bm.stat_name = 'PL/SQL execution elapsed time' THEN em.value - bm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN bm.stat_name = 'PL/SQL execution elapsed time' THEN em.value - bm.value END)
            / NULLIF(MAX(CASE WHEN bm.stat_name = 'DB time' THEN em.value - bm.value END),0),2),'999999990.99')                                           plsql_time_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN bm.stat_name = 'parse time elapsed' THEN em.value - bm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN bm.stat_name = 'parse time elapsed' THEN em.value - bm.value END)
            / NULLIF(MAX(CASE WHEN bm.stat_name = 'DB time' THEN em.value - bm.value END),0),2),'999999990.99')                                           parse_time_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN bm.stat_name = 'failed parse elapsed time' THEN em.value - bm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN bm.stat_name = 'failed parse elapsed time' THEN em.value - bm.value END)
            / NULLIF(MAX(CASE WHEN bm.stat_name = 'DB time' THEN em.value - bm.value END),0),2),'999999990.99')                                           failed_parse_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN bm.stat_name = 'hard parse (sharing criteria) elapsed time' THEN em.value - bm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN bm.stat_name = 'hard parse (sharing criteria) elapsed time' THEN em.value - bm.value END)
            / NULLIF(MAX(CASE WHEN bm.stat_name = 'DB time' THEN em.value - bm.value END),0),2),'999999990.99')                                           hard_parse_sharing_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN bm.stat_name = 'RMAN cpu time (backup/restore)' THEN em.value - bm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN bm.stat_name = 'RMAN cpu time (backup/restore)' THEN em.value - bm.value END)
            / NULLIF(MAX(CASE WHEN bm.stat_name = 'DB time' THEN em.value - bm.value END),0),2),'999999990.99')                                           rman_cpu_perc
 FROM  subq_snaps              ss
 ,     dba_hist_sys_time_model em  
