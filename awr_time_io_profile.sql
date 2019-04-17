@@ -46,7 +46,7 @@ SELECT ss.inst
 ,      ss.e_snap
 ,      ss.b_time
 ,      ss.e_time
-,      TO_CHAR(ROUND(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END)/1000000/60,2),'999999990.99')                   db_time
+,      TO_CHAR(ROUND(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END)/1000000,2),'999999990.99')                   db_time
 ,      TO_CHAR(ROUND(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END)/(ss.duration*1000000),1),'999999990.99')        aas
 ,      (SELECT round(average,2)
         FROM   dba_hist_sysmetric_summary sm
@@ -75,15 +75,15 @@ SELECT ss.inst
            / NULLIF(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END),0),2),'999999990.99')                                           db_cpu_perc
 ,      TO_CHAR(ROUND(100*MAX(CASE WHEN tm.stat_name = 'sql execute elapsed time' THEN tm.value END)
            / NULLIF(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END),0),2),'999999990.99')                                           sql_time_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN tm.stat_name = 'PL/SQL execution elapsed time' THEN tm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN tm.stat_name = 'PL/SQL execution elapsed time' THEN tm.value END)
            / NULLIF(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END),0),2),'999999990.99')                                           plsql_time_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN tm.stat_name = 'parse time elapsed' THEN tm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN tm.stat_name = 'parse time elapsed' THEN tm.value END)
            / NULLIF(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END),0),2),'999999990.99')                                parse_time_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN tm.stat_name = 'failed parse elapsed time' THEN tm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN tm.stat_name = 'failed parse elapsed time' THEN tm.value END)
            / NULLIF(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END),0),2),'999999990.99')                                failed_parse_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN tm.stat_name = 'hard parse (sharing criteria) elapsed time' THEN tm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN tm.stat_name = 'hard parse (sharing criteria) elapsed time' THEN tm.value END)
            / NULLIF(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END),0),2),'999999990.99')                                hard_parse_sharing_perc
-,      TO_CHAR(ROUND(MAX(CASE WHEN tm.stat_name = 'RMAN cpu time (backup/restore)' THEN tm.value END)
+,      TO_CHAR(ROUND(100*MAX(CASE WHEN tm.stat_name = 'RMAN cpu time (backup/restore)' THEN tm.value END)
            / NULLIF(MAX(CASE WHEN tm.stat_name = 'DB time' THEN tm.value END),0),2),'999999990.99')                                rman_cpu_perc
 ,      MAX(CASE WHEN event_name = 'db file sequential read' THEN ROUND(CASE WHEN waits < 0 THEN NULL ELSE waits END) END) single_waits
 ,      MAX(CASE WHEN event_name = 'db file scattered read'  THEN ROUND(CASE WHEN waits < 0 THEN NULL ELSE waits END) END) multi_waits
