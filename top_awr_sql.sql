@@ -30,7 +30,7 @@ and    sn.instance_number = st.instance_number
 --and    sn.instance_number = 2
 and    to_char(sn.end_interval_time,'D') not in (6,7)
 --and    to_char(sn.end_interval_time,'HH24') >= 19
-and    st.sql_id = '7vc631m2ayz8k'
+--and    st.sql_id = '7vc631m2ayz8k'
 group by 
        sn.snap_id
 ,      sn.end_interval_time
