@@ -3,7 +3,7 @@ from (
 select sn.snap_id
 ,      to_char(sn.end_interval_time,'DD-MON-YYYY HH24:MI') dt
 ,      st.sql_id
-, st.sql_profile
+,      st.sql_profile
 ,      st.instance_number inst
 ,      st.parsing_schema_name psn
 ,      st.plan_hash_value phv
